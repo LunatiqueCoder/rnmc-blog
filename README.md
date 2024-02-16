@@ -17,3 +17,46 @@ you can elevate your video interactions, ensuring a consistent and user-friendly
 3. Run `yarn add react-native-video` or `npm install react-native-video`
 4. Run `npx expo prebuild` so `ios` and `android` folders are updated accordingly with `react-native-video`'s native code.
 5. Run `yarn ios` or `yarn android` to run the app.
+6. Copy the following code in your `App.tsx` file:
+
+
+```tsx
+import { StyleSheet, View } from 'react-native';
+import Video from 'react-native-video';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Video
+        resizeMode="contain"
+        controls // <--- 👈 native controls
+        volume={0}
+        source={{ uri: 'https://vjs.zencdn.net/v/oceans.mp4' }}
+        style={styles.backgroundVideo}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+});
+
+```
+<br>
+<br>
+
+You will be presented the following native controls, which as you can see, they're inconsistent between platforms:
+
+![image](https://github.com/LunatiqueCoder/rnmc-blog/assets/55203625/7b8e3e19-9a7a-4156-9742-11b575103dfc)
+
